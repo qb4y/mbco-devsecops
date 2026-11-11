@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: hola-mibanco
+  namespace: mbco-reto-ns
+  labels:
+    app: hola-mibanco
+spec:
+  type: ClusterIP
+  selector:
+    app: hola-mibanco
+  ports:
+    - name: http
+      port: 80
+      targetPort: http
