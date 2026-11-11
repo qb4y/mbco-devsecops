@@ -31,7 +31,7 @@ variable "node_count" {
 variable "node_vm_size" {
   description = "Tamano de la VM de cada nodo"
   type        = string
-  default     = "Standard_B2s"
+  default     = "Standard_D2s_v6"
 }
 
 variable "tags" {
