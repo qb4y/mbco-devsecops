@@ -25,6 +25,8 @@ env:
   TF_DIR: infra/terraform
   INGRESS_NGINX_CHART_VERSION: "4.15.1"
   APP_NAMESPACE: mbco-reto-ns
+  TFSTATE_STORAGE_ACCOUNT: ${{ vars.TFSTATE_STORAGE_ACCOUNT || 'stmbcotfstate' }}
+  TF_VAR_acr_name: ${{ vars.ACR_NAME || 'acrmbcoreto' }}
   ARM_USE_OIDC: "true"
   ARM_USE_AZUREAD_AUTH: "true"
   ARM_CLIENT_ID: ${{ vars.AZURE_CLIENT_ID }}
@@ -64,7 +66,7 @@ jobs:
           terraform_version: ${{ env.TF_VERSION }}
 
       - name: Init
-        run: terraform init -input=false
+        run: terraform init -input=false -backend-config="storage_account_name=$TFSTATE_STORAGE_ACCOUNT"
         working-directory: ${{ env.TF_DIR }}
 
       - name: Plan
@@ -105,7 +107,7 @@ jobs:
           path: ${{ env.TF_DIR }}
 
       - name: Init
-        run: terraform init -input=false
+        run: terraform init -input=false -backend-config="storage_account_name=$TFSTATE_STORAGE_ACCOUNT"
         working-directory: ${{ env.TF_DIR }}
 
       - name: Apply

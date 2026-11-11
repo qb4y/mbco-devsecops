@@ -1,10 +1,10 @@
 #! /usr/bin/env bash
 set -euo pipefail
 
-RG_NAME="rg-mbco-tfstate"
-LOCATION="eastus2"
-STORAGE_NAME="stmbcotfstate"
-CONTAINER_NAME="tfstate"
+RG_NAME="${RG_NAME:-rg-mbco-tfstate}"
+LOCATION="${LOCATION:-eastus2}"
+STORAGE_NAME="${STORAGE_NAME:-stmbcotfstate}"
+CONTAINER_NAME="${CONTAINER_NAME:-tfstate}"
 
 # 1) Resource group
 az group create --name "$RG_NAME" --location "$LOCATION"

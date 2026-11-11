@@ -20,7 +20,7 @@ concurrency:
   cancel-in-progress: false
 
 env:
-  ACR_NAME: acrmbcoreto
+  ACR_NAME: ${{ vars.ACR_NAME || 'acrmbcoreto' }}
   IMAGE_NAME: hola-mibanco
   RESOURCE_GROUP: rg-mbco-reto
   CLUSTER_NAME: aks-mbco-reto
@@ -73,7 +73,7 @@ jobs:
         working-directory: deploy
         run: |
           kustomize edit set image \
-            "$ACR_NAME.azurecr.io/$IMAGE_NAME=$ACR_NAME.azurecr.io/$IMAGE_NAME:$IMAGE_TAG"
+            "$IMAGE_NAME=$ACR_NAME.azurecr.io/$IMAGE_NAME:$IMAGE_TAG"
           kustomize build . | grep "image:"
 
       - name: Aplicar manifiestos
