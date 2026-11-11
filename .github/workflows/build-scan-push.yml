@@ -17,7 +17,7 @@ concurrency:
   cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 env:
-  ACR_NAME: acrmbcoreto
+  ACR_NAME: ${{ vars.ACR_NAME || 'acrmbcoreto' }}
   IMAGE_NAME: hola-mibanco
 
 jobs:

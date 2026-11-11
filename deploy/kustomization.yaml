@@ -8,5 +8,5 @@ resources:
   - hpa.yaml
 
 images:
-  - name: acrmbcoreto.azurecr.io/hola-mibanco
+  - name: hola-mibanco
     newTag: latest
